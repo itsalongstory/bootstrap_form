@@ -279,7 +279,7 @@ module BootstrapForm
     end
 
     def has_error?(name)
-      object.respond_to?(:errors) && !(name.nil? || object.errors[name].empty?) && !options[:disable_error]
+      object.respond_to?(:errors) && !(name.nil? || object.errors[name].empty?) && !disable_error
     end
 
     def required_attribute?(obj, attribute)
