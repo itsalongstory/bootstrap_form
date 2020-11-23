@@ -6,7 +6,7 @@ module BootstrapForm
     extend BootstrapForm::Aliasing
     include BootstrapForm::Helpers::Bootstrap
 
-    attr_reader :layout, :label_col, :control_col, :has_error, :inline_errors, :label_errors, :acts_like_form_tag
+    attr_reader :layout, :label_col, :control_col, :has_error, :inline_errors, :label_errors, :acts_like_form_tag, :disable_error
 
     FIELD_HELPERS = %w{color_field date_field datetime_field datetime_local_field
       email_field month_field number_field password_field phone_field
@@ -279,7 +279,7 @@ module BootstrapForm
     end
 
     def has_error?(name)
-      object.respond_to?(:errors) && !(name.nil? || object.errors[name].empty?)
+      object.respond_to?(:errors) && !(name.nil? || object.errors[name].empty?) && !options[:disable_error]
     end
 
     def required_attribute?(obj, attribute)
